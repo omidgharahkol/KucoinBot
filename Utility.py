@@ -11,5 +11,5 @@ def add_price(price, add_number):
 
 
 if __name__ == '__main__':
-    c = add_price(10.602, 2)
-    print(c)
+    c = add_price(10.612, -3)
+    print(c+4)
