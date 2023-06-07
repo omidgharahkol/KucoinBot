@@ -1,3 +1,5 @@
+import Kucoin
+
 last_value = ''
 
 while last_value != 'EndSpread':
@@ -8,8 +10,15 @@ while last_value != 'EndSpread':
                 last_value = 'EndSpread'
                 break
             else:
-                symbol, target_price = line.strip('\n').split(',')
-                print(symbol, target_price)
+                symbol, target_price , volume = line.strip('\n').split(',')
+                coin = symbol.split('-')[0]
+                try:
+                   Kucoin.put_sell_order(coin,target_price)
+                except:
+                    pass
 
+
+
+Kucoin.cancel_buy_orders()
 file_to_delete = open("file.txt", 'w')
 file_to_delete.close()

@@ -25,10 +25,10 @@ def trades_volume(trades):
     lenght = len(trades)
     size = 0
     for i in range(lenght):
-        sum_volume += float(trades[i]['price']) * float(trades[i]['size'])
+        # sum_volume += float(trades[i]['price']) * float(trades[i]['size'])
         size += float(trades[i]['size'])
 
-    return sum_volume / lenght
+    return size / lenght
 
 
 def last_trade(trades):
@@ -55,7 +55,7 @@ def last_trade(trades):
 
 
 if __name__ == '__main__':
-    symbol = 'AXS3S-USDT'
+    symbol = 'NWC-USDT'
     session = requests.session()
     a = get_tardes(symbol, session)
     b = trades_volume(a)

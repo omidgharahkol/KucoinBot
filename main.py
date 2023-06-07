@@ -1,7 +1,9 @@
 import Coins
+import Kucoin
 import Orders
 import requests
 import Trades
+import Utility
 
 session = requests.session()
 
@@ -13,18 +15,21 @@ c = 0
 
 for i in coins:
     try:
-        orders = Orders.get_orders(session,i)
-        gap = Orders.top_orders(orders)
+        orders = Orders.get_orders(session, i)
+        max, min, gap = Orders.top_orders(orders)
         if gap > 1:
-            trades = Trades.get_tardes(i,session)
+            trades = Trades.get_tardes(i, session)
             last = Trades.last_trade(trades)
+            valoume = Trades.trades_volume(trades)
             if last < 120:
-               print(i , ' ' , gap[2])
-               with open('file.txt', 'a') as the_file:
-                   the_file.write('{},{}\n'.format(i,gap[1]))
+                print(i, ' ', gap, ' ', valoume  , Utility.add_price(min , 2))
+                with open('file.txt', 'a') as the_file:
+                    a = Kucoin.client_orders.create_limit_order(i, 'buy', str(int(valoume)), str(Utility.add_price(min , 2)))
+                    print(a)
+                    the_file.write('{},{},{}\n'.format(i, Utility.add_price(max, -2), valoume))
 
-    except:
-        pass
+    except Exception as e:
+        print(str(e))
 
     c += 1
     print(c)
