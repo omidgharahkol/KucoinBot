@@ -31,8 +31,8 @@ for i in coins:
     except Exception as e:
         print(str(e))
 
-    c += 1
-    print(c)
+    # c += 1
+    # print(c)
 
 with open('Spread.txt', 'a') as the_file:
     the_file.write('EndSpread')
