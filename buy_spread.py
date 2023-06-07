@@ -23,7 +23,7 @@ for i in coins:
             valoume = Trades.trades_volume(trades)
             if last < 120:
                 print(i, ' ', gap, ' ', valoume  , Utility.add_price(min , 2))
-                with open('file.txt', 'a') as the_file:
+                with open('Spread.txt', 'a') as the_file:
                     a = Kucoin.client_orders.create_limit_order(i, 'buy', str(int(valoume)), str(Utility.add_price(min , 2)))
                     print(a)
                     the_file.write('{},{},{}\n'.format(i, Utility.add_price(max, -2), valoume))
@@ -34,5 +34,5 @@ for i in coins:
     c += 1
     print(c)
 
-with open('file.txt', 'a') as the_file:
+with open('Spread.txt', 'a') as the_file:
     the_file.write('EndSpread')

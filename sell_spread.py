@@ -3,22 +3,20 @@ import Kucoin
 last_value = ''
 
 while last_value != 'EndSpread':
-    with open("file.txt") as file_in:
+    with open("Spread.txt") as file_in:
         lines = []
         for line in file_in:
             if line == 'EndSpread':
                 last_value = 'EndSpread'
                 break
             else:
-                symbol, target_price , volume = line.strip('\n').split(',')
+                symbol, target_price, volume = line.strip('\n').split(',')
                 coin = symbol.split('-')[0]
                 try:
-                   Kucoin.put_sell_order(coin,target_price)
+                    Kucoin.put_sell_order(coin, target_price)
                 except:
                     pass
 
-
-
 Kucoin.cancel_buy_orders()
-file_to_delete = open("file.txt", 'w')
+file_to_delete = open("Spread.txt", 'w')
 file_to_delete.close()
