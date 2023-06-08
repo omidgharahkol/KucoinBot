@@ -1,4 +1,4 @@
-import Kucoin
+import KucoinClient
 
 last_value = ''
 

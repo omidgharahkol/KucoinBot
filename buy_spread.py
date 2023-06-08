@@ -1,5 +1,5 @@
 import Coins
-import Kucoin
+import KucoinClient
 import Orders
 import requests
 import Trades
