@@ -40,6 +40,8 @@ def cancel_buy_orders():
 #     print(i)
 
 
+
+
 def put_sell_order(coin, target_price):
     volume = user_data.get_account_list(coin)[0]['balance']
     symbol = coin + '-USDT'
@@ -49,5 +51,14 @@ def put_sell_order(coin, target_price):
 
 if __name__ == '__main__':
     # put_sell_order('CHMB',2)
-    cancel_buy_orders()
-    pass
+    u = user_data.get_account_list()
+    for i in u:
+        if i['type'] == 'trade' and  i['balance'] != '0' and i['currency'] not in ('LMR','PIAS','USDT'):
+            client_orders.create_market_order(i['currency']+'-USDT', 'sell', size=i['balance'])
+
+            print(i)
+
+
+    # a = client_orders.create_market_order('ARX-USDT','sell',size = '12154')
+    # print(a)
+

@@ -32,5 +32,5 @@ import time
 # print(s)
 # print(s*0.01*(1-0.001))
 
-with open('file.txt', 'a') as the_file:
+with open('Spread.txt', 'a') as the_file:
     the_file.write('EndSpread')
